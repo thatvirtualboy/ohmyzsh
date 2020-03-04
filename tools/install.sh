@@ -165,16 +165,16 @@ setup_shell() {
 		return
 	fi
 
-	echo "${BLUE}Time to change your default shell to zsh:${RESET}"
+#	echo "${BLUE}Time to change your default shell to zsh:${RESET}"
 
 	# Prompt for user choice on changing the default login shell
-	printf "${YELLOW}Do you want to change your default shell to zsh? [Y/n]${RESET} "
-	read opt
-	case $opt in
-		y*|Y*|"") echo "Changing the shell..." ;;
-		n*|N*) echo "Shell change skipped."; return ;;
-		*) echo "Invalid choice. Shell change skipped."; return ;;
-	esac
+#	printf "${YELLOW}Do you want to change your default shell to zsh? [Y/n]${RESET} "
+#	read opt
+#	case $opt in
+#		y*|Y*|"") echo "Changing the shell..." ;;
+#		n*|N*) echo "Shell change skipped."; return ;;
+#		*) echo "Invalid choice. Shell change skipped."; return ;;
+#	esac
 
 	# Check if we're running on Termux
 	case "$PREFIX" in
@@ -261,19 +261,6 @@ main() {
 
 	printf "$GREEN"
 	cat <<-'EOF'
-		         __                                     __
-		  ____  / /_     ____ ___  __  __   ____  _____/ /_
-		 / __ \/ __ \   / __ `__ \/ / / /  /_  / / ___/ __ \
-		/ /_/ / / / /  / / / / / / /_/ /    / /_(__  ) / / /
-		\____/_/ /_/  /_/ /_/ /_/\__, /    /___/____/_/ /_/
-		                        /____/                       ....is now installed!
-
-
-		Please look over the ~/.zshrc file to select plugins, themes, and options.
-
-		p.s. Follow us on https://twitter.com/ohmyzsh
-
-		p.p.s. Get stickers, shirts, and coffee mugs at https://shop.planetargon.com/collections/oh-my-zsh
 
 	EOF
 	printf "$RESET"
