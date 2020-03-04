@@ -145,25 +145,25 @@ export ZSH=\"$ZSH\"
 	echo
 }
 
-setup_shell() {
+# setup_shell() {
 	# Skip setup if the user wants or stdin is closed (not running interactively).
-	if [ $CHSH = no ]; then
-		return
-	fi
+	#if [ $CHSH = no ]; then
+#		return
+#	fi
 
 	# If this user's login shell is already "zsh", do not attempt to switch.
-	if [ "$(basename "$SHELL")" = "zsh" ]; then
-		return
-	fi
+#	if [ "$(basename "$SHELL")" = "zsh" ]; then
+#		return
+#	fi
 
 	# If this platform doesn't provide a "chsh" command, bail out.
-	if ! command_exists chsh; then
-		cat <<-EOF
-			I can't change your shell automatically because this system does not have chsh.
-			${BLUE}Please manually change your default shell to zsh${RESET}
-		EOF
-		return
-	fi
+#	if ! command_exists chsh; then
+#		cat <<-EOF
+#			I can't change your shell automatically because this system does not have chsh.
+#			${BLUE}Please manually change your default shell to zsh${RESET}
+#		EOF
+#		return
+#	fi
 
 #	echo "${BLUE}Time to change your default shell to zsh:${RESET}"
 
@@ -177,33 +177,33 @@ setup_shell() {
 #	esac
 
 	# Check if we're running on Termux
-	case "$PREFIX" in
-		*com.termux*) termux=true; zsh=zsh ;;
-		*) termux=false ;;
-	esac
+#	case "$PREFIX" in
+#		*com.termux*) termux=true; zsh=zsh ;;
+#		*) termux=false ;;
+#	esac
 
-	if [ "$termux" != true ]; then
-		# Test for the right location of the "shells" file
-		if [ -f /etc/shells ]; then
-			shells_file=/etc/shells
-		elif [ -f /usr/share/defaults/etc/shells ]; then # Solus OS
-			shells_file=/usr/share/defaults/etc/shells
-		else
-			error "could not find /etc/shells file. Change your default shell manually."
-			return
-		fi
+#	if [ "$termux" != true ]; then
+#		# Test for the right location of the "shells" file
+#		if [ -f /etc/shells ]; then
+#			shells_file=/etc/shells
+#		elif [ -f /usr/share/defaults/etc/shells ]; then # Solus OS
+#			shells_file=/usr/share/defaults/etc/shells
+#		else
+#			error "could not find /etc/shells file. Change your default shell manually."
+#			return
+#		fi
 
 		# Get the path to the right zsh binary
 		# 1. Use the most preceding one based on $PATH, then check that it's in the shells file
 		# 2. If that fails, get a zsh path from the shells file, then check it actually exists
-		if ! zsh=$(which zsh) || ! grep -qx "$zsh" "$shells_file"; then
-			if ! zsh=$(grep '^/.*/zsh$' "$shells_file" | tail -1) || [ ! -f "$zsh" ]; then
-				error "no zsh binary found or not present in '$shells_file'"
-				error "change your default shell manually."
-				return
-			fi
-		fi
-	fi
+#		if ! zsh=$(which zsh) || ! grep -qx "$zsh" "$shells_file"; then
+#			if ! zsh=$(grep '^/.*/zsh$' "$shells_file" | tail -1) || [ ! -f "$zsh" ]; then
+#				error "no zsh binary found or not present in '$shells_file'"
+#				error "change your default shell manually."
+#				return
+#			fi
+#		fi
+#	fi
 
 	# We're going to change the default shell, so back up the current one
 #	if [ -n "$SHELL" ]; then
